@@ -1,0 +1,18 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.trustindex.io https://*.trustindex.io; style-src 'self' 'unsafe-inline' https://cdn.trustindex.io https://*.trustindex.io; font-src 'self' data: https://cdn.trustindex.io https://*.trustindex.io; connect-src 'self' https://cdn.trustindex.io https://*.trustindex.io https://api.postcodes.io; frame-src https://*.trustindex.io https://www.youtube-nocookie.com https://www.google.com; form-action 'self'; frame-ancestors 'self'; base-uri 'self'
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000

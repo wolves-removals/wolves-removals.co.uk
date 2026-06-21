@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Wolves Removals — Your Essential Moving Home Checklist</title>
+<style>
+  @font-face { font-family:'Barlow'; font-weight:400; src:url('../../fonts/Barlow-Regular.woff2') format('woff2'); }
+  @font-face { font-family:'Barlow'; font-weight:500; src:url('../../fonts/Barlow-Medium.woff2') format('woff2'); }
+  @font-face { font-family:'Barlow'; font-weight:600; src:url('../../fonts/Barlow-Semibold.woff2') format('woff2'); }
+  @font-face { font-family:'Barlow'; font-weight:700; src:url('../../fonts/Barlow-Bold.woff2') format('woff2'); }
+
+  :root{
+    --ink:#262626; --slate:#697783; --body:#363b41; --cream:#E8E6DA; --cream2:#F6F4EC;
+    --green:#02be7c; --green-d:#069c68; --line:#e7e3d6;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  html,body{ font-family:'Barlow',Arial,sans-serif; color:var(--ink); font-size:9.9pt; line-height:1.5; }
+  @page{ size:A4; margin:0; }
+  .page{ position:relative; width:210mm; height:297mm; overflow:hidden; background:#fff; page-break-after:always; }
+  .page:last-child{ page-break-after:auto; }
+  h1,h2,h3,h4{ font-weight:700; text-transform:uppercase; line-height:1.04; }
+  p{ margin:0 0 5.5px; }
+  strong{ font-weight:700; }
+
+  .blob{ position:absolute; border-radius:50%; }
+
+  /* ---------- header / footer ---------- */
+  .hd{ position:relative; z-index:3; height:28mm; background:var(--cream); padding:0 15mm; display:flex; align-items:center; gap:6mm; }
+  .hd:after{ content:""; position:absolute; left:0; right:0; bottom:0; height:3px; background:var(--green); }
+  .hd .logo{ height:14mm; }
+  .hd .meta{ flex:1; }
+  .hd .kicker{ color:var(--green-d); font-weight:700; letter-spacing:2.4px; font-size:8pt; text-transform:uppercase; }
+  .hd .wk{ font-size:17.5pt; color:var(--ink); margin-top:1mm; line-height:1; }
+  .hd .pill{ flex:0 0 auto; background:var(--slate); color:#fff; border-radius:30px; padding:2mm 5mm; font-weight:700; font-size:8.2pt; text-transform:uppercase; letter-spacing:.6px; }
+  .bd{ position:relative; z-index:3; padding:6mm 15mm 0; height:258mm; display:flex; flex-direction:column; }
+  .ft{ position:absolute; left:0; right:0; bottom:0; z-index:3; height:11mm; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:space-between; padding:0 15mm; font-size:8.2pt; }
+  .ft b{ color:var(--green); } .ft .nx{ background:var(--green); color:#fff; font-weight:700; border-radius:20px; padding:1.4mm 4mm; text-transform:uppercase; letter-spacing:.5px; font-size:7.8pt; }
+
+  /* ---------- text (darker grey body) ---------- */
+  .cols{ display:flex; gap:8mm; } .cols>.c{ flex:1; min-width:0; }
+  .lead{ font-size:11pt; font-weight:600; color:var(--ink); }
+  .intro{ color:var(--body); }
+  .muted{ color:var(--body); }
+  .mt2{margin-top:2mm}.mt3{margin-top:3mm}.mt4{margin-top:4mm}.mb2{margin-bottom:2mm}.mb3{margin-bottom:3mm}
+
+  /* ---------- hero row: intro text + fully-visible image ---------- */
+  .hero{ display:flex; gap:8mm; align-items:center; margin-bottom:4mm; }
+  .hero .txt{ flex:1; min-width:0; }
+  .hero .pic{ flex:0 0 84mm; height:60mm; border-radius:11px; overflow:hidden; border:1px solid var(--line);
+    background:var(--cream2); display:flex; align-items:center; justify-content:center; }
+  .hero .pic.tall{ height:70mm; }
+  .hero .pic img{ max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; }
+
+  /* ---------- numbered section ---------- */
+  .sec{ margin-bottom:3mm; }
+  .sec h3{ display:flex; align-items:center; gap:3mm; font-size:10.4pt; color:var(--ink); margin-bottom:1.6mm; }
+  /* number medallion — matches the website brand badge: cream disc, dark ring, dark number */
+  .sec h3 .n{ flex:0 0 auto; width:7.4mm; height:7.4mm; border-radius:50%; background:#dad6c2; color:var(--ink); border:1.5px solid var(--ink); display:flex; align-items:center; justify-content:center; font-size:9pt; font-weight:700; }
+
+  /* ---------- TICK-OFF checklist (empty boxes) ---------- */
+  ul.todo{ list-style:none; }
+  ul.todo li{ position:relative; padding:1.5mm 0 1.5mm 7.4mm; font-size:9pt; line-height:1.34; color:var(--ink); break-inside:avoid; }
+  ul.todo li:before{ content:""; position:absolute; left:0; top:1.1mm; width:4.6mm; height:4.6mm; border:1.7px solid var(--green); border-radius:1.3mm; background:#fff; }
+  ul.todo li b{ font-weight:700; }
+  ul.todo.two{ column-count:2; column-gap:9mm; }
+
+  /* ---------- green-tick list (benefits) ---------- */
+  ul.bul{ list-style:none; } ul.bul.two{ column-count:2; column-gap:9mm; }
+  ul.bul li{ position:relative; padding:1.3mm 0 1.3mm 6.6mm; font-size:9pt; line-height:1.32; color:var(--body); break-inside:avoid; }
+  ul.bul li:before{ content:""; position:absolute; left:0; top:1.4mm; width:4mm; height:4mm; background:url('../../images/brand/check.svg') no-repeat center/contain; }
+
+  /* ---------- callout panels ---------- */
+  .cbox{ background:var(--slate); color:#fff; border-radius:12px; padding:4.2mm 5.5mm; }
+  .cbox .lbl{ display:block; color:#bff5e2; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; font-size:8.2pt; margin-bottom:1.4mm; }
+  .cbox h4{ font-size:12.5pt; color:#fff; margin-bottom:1.4mm; }
+  .cbox p{ font-size:8.7pt; color:#eef1f3; margin:0; line-height:1.42; }
+  /* green & ink variants brought to the brand slate panel (matches the website) */
+  .cbox.green{ background:var(--slate); } .cbox.green .lbl{ color:#bff5e2; } .cbox.green p{ color:#eef1f3; }
+  .cbox.ink{ background:var(--slate); }
+  .tipbar{ background:var(--cream2); border-left:4px solid var(--green); border-radius:9px; padding:3.2mm 5mm; font-size:8.9pt; color:var(--body); }
+  .tipbar .lbl{ display:block; color:var(--green-d); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:7.6pt; margin-bottom:.8mm; }
+
+  .card{ background:var(--cream2); border:1px solid var(--line); border-radius:12px; padding:4mm 5mm; }
+  .card h3{ font-size:10.4pt; margin-bottom:2.2mm; }
+  .card p{ color:var(--body); }
+  .stat{ display:flex; gap:3mm; }
+  .stat .s{ flex:1; background:var(--slate); color:#fff; border-radius:9px; padding:3mm 1mm; text-align:center; }
+  .stat .s b{ display:block; font-size:14.5pt; line-height:1; }
+  .stat .s span{ display:block; font-size:6.9pt; text-transform:uppercase; letter-spacing:.3px; color:var(--cream); margin-top:1mm; }
+
+  /* ================= COVERS — front (logo) + back (contact) ================= */
+  .cv, .bcv{ background:#585858; }
+  .cv .bg, .bcv .bg{ position:absolute; inset:0; z-index:0;
+    background: linear-gradient(122deg, #6a6a6a 0%, #5a5a5a 50%, #4d4d4d 100%); }
+  .sw{ position:absolute; inset:0; z-index:1; width:100%; height:100%; pointer-events:none; }
+  /* front cover */
+  .cv .seal{ position:absolute; z-index:2; width:152mm; height:152mm; top:54mm; left:50%; transform:translateX(-50%);
+    display:flex; align-items:center; justify-content:center; filter:drop-shadow(0 10px 24px rgba(0,0,0,.30)); }
+  .cv .seal img{ width:100%; height:100%; object-fit:contain; }
+  .cv .cap{ position:absolute; z-index:2; left:10mm; right:10mm; bottom:40mm; text-align:center; }
+  .cv .cap .services{ color:#fff; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; font-size:22pt; white-space:nowrap; }
+  .cv .cap .services .dot{ opacity:.9; margin:0 2.5mm; }
+  /* back cover */
+  .bcv .info{ position:absolute; z-index:2; left:16mm; right:16mm; top:66mm; text-align:center; color:#fff; }
+  .bcv .contact{ font-weight:700; font-size:13pt; line-height:1.8; letter-spacing:.3px; }
+  .bcv .addr{ margin-top:11mm; }
+  .bcv .addr .blk{ margin-top:7mm; font-size:10pt; line-height:1.5; color:#ededed; }
+  .bcv .addr .blk .nm{ font-weight:700; color:#fff; }
+  .bcv .badges{ position:absolute; z-index:2; left:18mm; bottom:22mm; display:flex; gap:5mm; align-items:center; }
+  .bcv .badges img{ width:15mm; height:15mm; object-fit:contain; }
+
+  /* page numbers — content pages only; covers + welcome have no .ft, so no number.
+     Reset to 2 so the first content page prints 3 (welcome=1, logo cover=2 are unnumbered). */
+  body{ counter-reset: pg 2; }
+  .ft{ counter-increment: pg; }
+  .ft:after{ content: counter(pg); position:absolute; left:50%; top:0; transform:translateX(-50%);
+    line-height:11mm; color:#fff; font-weight:700; font-size:8.6pt; opacity:.92; }
+
+  /* ================= WELCOME / CONTENTS (page 1) ================= */
+  .wel{ background:var(--cream2); }
+  .wel .inner{ position:absolute; inset:0; padding:26mm 24mm 18mm; display:flex; flex-direction:column; }
+  .wel .brandmark{ width:30mm; height:30mm; margin:0 auto 7mm; }
+  .wel .brandmark img{ width:100%; height:100%; object-fit:contain; }
+  .wel h1{ text-align:center; font-size:30pt; font-weight:800; color:var(--ink); letter-spacing:.2px; line-height:1.08; margin:0; }
+  .wel .accent{ width:32mm; height:3px; background:var(--green); border-radius:2px; margin:6mm auto 7mm; }
+  .wel .lead{ text-align:center; font-size:11pt; line-height:1.62; color:var(--body); max-width:152mm; margin:0 auto; }
+  .wel .toc{ margin-top:13mm; }
+  .wel .toc .th{ display:flex; align-items:center; gap:5mm; margin-bottom:6mm; }
+  .wel .toc .th h2{ font-size:12.5pt; font-weight:800; color:var(--ink); text-transform:uppercase; letter-spacing:3.4px; margin:0; }
+  .wel .toc .th .line{ flex:1; height:2px; background:var(--line); }
+  .wel .toc ol{ list-style:none; margin:0; padding:0; }
+  .wel .toc li{ display:flex; align-items:baseline; gap:3mm; padding:2.5mm 0; font-size:10.6pt; color:var(--ink); }
+  .wel .toc li .no{ flex:0 0 8mm; color:var(--green-d); font-weight:700; }
+  .wel .toc li .ti{ flex:0 0 auto; font-weight:600; }
+  .wel .toc li .dots{ flex:1 1 auto; border-bottom:1.5px dotted var(--slate); opacity:.45; margin:0 2.5mm; transform:translateY(-1.2mm); }
+  .wel .toc li .pg{ flex:0 0 auto; font-weight:700; color:var(--slate); }
+  .wel .welfoot{ margin-top:auto; text-align:center; color:var(--slate); font-size:8.6pt; letter-spacing:.4px; }
+  .wel .welfoot b{ color:var(--green-d); }
+
+  /* ---------- interactive: header progress ring ---------- */
+  .hd .hprog{ flex:0 0 auto; display:flex; align-items:center; gap:2.6mm; }
+  .hd .hring{ width:15mm; height:15mm; border-radius:50%; border:3px solid var(--green); background:#fff; display:flex; align-items:center; justify-content:center; }
+  .hd .hring .hpct{ font-size:8.2pt; font-weight:800; color:var(--green-d); }
+  .hd .hmeta{ display:flex; flex-direction:column; line-height:1.12; }
+  .hd .hmeta .hlab{ font-size:6.8pt; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--slate); }
+  .hd .hmeta .hcnt{ font-size:10.5pt; font-weight:700; color:var(--ink); white-space:nowrap; }
+  /* ---------- interactive: contact table (Task / Done / Date / Notes) ---------- */
+  table.ctable{ width:100%; border-collapse:collapse; margin:0 0 3mm; }
+  table.ctable th{ background:var(--slate); color:#fff; font-size:7pt; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding:1.6mm 2.4mm; text-align:left; }
+  table.ctable th.c{ text-align:center; }
+  table.ctable td{ border:1px solid var(--line); padding:1.7mm 2.4mm; font-size:8.4pt; color:var(--body); vertical-align:middle; }
+  table.ctable td.tk{ font-weight:600; color:var(--ink); }
+  table.ctable td.dn{ text-align:center; width:17mm; }
+  table.ctable td.dt{ width:33mm; } table.ctable td.nt{ width:40mm; }
+  table.ctable .dbox{ display:inline-block; width:4.6mm; height:4.6mm; border:1.7px solid var(--slate); border-radius:1.3mm; background:#fff; vertical-align:middle; }
+
+  /* moving-date bar */
+  .mdate{ display:flex; align-items:center; gap:3mm; background:var(--cream2); border:1px solid var(--line); border-radius:8px; padding:2.3mm 4.5mm; margin-bottom:3.4mm; font-size:10.4pt; font-weight:700; color:var(--ink); }
+  .mdate .mline{ flex:1; border-bottom:1.6px solid var(--slate); height:4.4mm; }
+  /* additional notes box pinned to the bottom of the body */
+  .addnotes{ margin-top:4mm; padding-bottom:3mm; flex:1 1 auto; display:flex; flex-direction:column; }
+  .addnotes .anlbl{ display:block; font-size:7.8pt; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--green-d); margin-bottom:1.4mm; }
+  .addnotes .anbox{ border:1px solid var(--line); border-radius:8px; background:var(--cream2); flex:1 1 auto; min-height:20mm; }
+  /* 5-col contact table (Task/Done/Provider/Date/Notes) */
+  table.ctable td.pv{ width:33mm; } table.ctable td.dt{ width:29mm; } table.ctable td.nt{ width:38mm; } table.ctable td.dn{ width:13mm; }
+  /* helpful-contacts table */
+  table.cttable{ width:100%; border-collapse:collapse; margin-bottom:3mm; }
+  table.cttable th{ background:var(--slate); color:#fff; font-size:7.2pt; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding:1.8mm 2.6mm; text-align:left; }
+  table.cttable td{ border:1px solid var(--line); padding:2.3mm 2.6mm; font-size:9pt; height:11.5mm; vertical-align:middle; }
+  table.cttable td.ct{ font-weight:700; color:var(--ink); width:46mm; background:#faf9f5; }
+  table.cttable td.cn{ width:46mm; } table.cttable td.cp{ width:40mm; color:var(--body); } table.cttable td.cnt{ width:48mm; }
+
+  .bcv .finalnotes{ position:absolute; z-index:2; left:18mm; right:18mm; bottom:16mm; }
+  .bcv .finalnotes .fnlbl{ display:block; color:#efece1; font-size:8pt; font-weight:700; text-transform:uppercase; letter-spacing:1.6px; margin-bottom:2mm; }
+  .bcv .finalnotes .fnbox{ background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.35); border-radius:8px; height:34mm; }
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE 1 — COVER ===================== -->
+<div class="page cv">
+  <div class="bg"></div>
+  <svg class="sw" viewBox="0 0 210 297" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#cfd2d5" stroke-linecap="round">
+      <path d="M -25 232 C 55 205 85 150 240 104" stroke-width="22" opacity="0.07"/>
+      <path d="M -25 250 C 65 218 108 150 248 88" stroke-width="12" opacity="0.11"/>
+      <path d="M -25 266 C 75 232 128 152 252 72" stroke-width="6.5" opacity="0.14"/>
+      <path d="M -25 281 C 85 246 148 160 256 60" stroke-width="3.2" opacity="0.16"/>
+      <path d="M -25 295 C 95 258 165 172 260 50" stroke-width="1.6" opacity="0.17"/>
+    </g>
+  </svg>
+  <div class="seal"><img src="../../images/brand/wolves-removals-logo-mark-hd.png" alt="Wolves Removals logo"></div>
+  <div class="cap">
+    <div class="services">Removals <span class="dot">&bull;</span> Storage <span class="dot">&bull;</span> Packing</div>
+  </div>
+</div>
+
+<!-- ===================== PAGE 2 — WELCOME / CONTENTS ===================== -->
+<div class="page wel">
+  <div class="inner">
+    <div class="brandmark"><img src="../../images/brand/wolves-removals-logo-mark-hd.png" alt="Wolves Removals"></div>
+    <h1>Welcome to Wolves Removals</h1>
+    <div class="accent"></div>
+    <p class="lead">Thank you for viewing this PDF. Now that you&rsquo;re moving home, we want the whole experience to feel calm, organised and genuinely enjoyable &mdash; never stressful. This guide is our way of supporting you every step of the way: a friendly, week-by-week checklist drawn from years of carefully moving families and businesses across Sussex. Wherever you are in your journey, our team is only ever a phone call away &mdash; and we&rsquo;d be delighted to take the heavy lifting, and the worry, off your hands.</p>
+    <div class="toc">
+      <div class="th"><h2>Contents</h2><span class="line"></span></div>
+      <ol><li><span class="no">1.</span><span class="ti">Planning &amp; Booking <span style="color:var(--slate);font-weight:600;">(8 weeks before)</span></span><span class="dots"></span><span class="pg">3</span></li><li><span class="no">2.</span><span class="ti">Preparation &amp; Planning <span style="color:var(--slate);font-weight:600;">(7 weeks before)</span></span><span class="dots"></span><span class="pg">4</span></li><li><span class="no">3.</span><span class="ti">Notifications <span style="color:var(--slate);font-weight:600;">(6 weeks before)</span></span><span class="dots"></span><span class="pg">5</span></li><li><span class="no">4.</span><span class="ti">Change of Address <span style="color:var(--slate);font-weight:600;">(5 weeks before)</span></span><span class="dots"></span><span class="pg">6</span></li><li><span class="no">5.</span><span class="ti">Documents &amp; Storage <span style="color:var(--slate);font-weight:600;">(4 weeks before)</span></span><span class="dots"></span><span class="pg">7</span></li><li><span class="no">6.</span><span class="ti">Packing <span style="color:var(--slate);font-weight:600;">(3 weeks before)</span></span><span class="dots"></span><span class="pg">8</span></li><li><span class="no">7.</span><span class="ti">Final Arrangements <span style="color:var(--slate);font-weight:600;">(2 weeks before)</span></span><span class="dots"></span><span class="pg">9</span></li><li><span class="no">8.</span><span class="ti">Final Week <span style="color:var(--slate);font-weight:600;">(1 week before)</span></span><span class="dots"></span><span class="pg">10</span></li><li><span class="no">9.</span><span class="ti">Moving Day</span><span class="dots"></span><span class="pg">11</span></li><li><span class="no">10.</span><span class="ti">Settling In</span><span class="dots"></span><span class="pg">12</span></li><li><span class="no">11.</span><span class="ti">Helpful Contacts &amp; Emergency Numbers</span><span class="dots"></span><span class="pg">13</span></li><li><span class="no">12.</span><span class="ti">You&rsquo;re in safe hands</span><span class="dots"></span><span class="pg">15</span></li><li><span class="no">13.</span><span class="ti">Contact details &amp; locations</span><span class="dots"></span><span class="pg">16</span></li></ol>
+    </div>
+    <div class="welfoot"><b>Wolves Removals</b> &nbsp;&middot;&nbsp; Removals &middot; Storage &middot; Packing &nbsp;&middot;&nbsp; wolves-removals.co.uk</div>
+  </div>
+</div>
+
+<!-- ===================== STAGE 01 — Planning &amp; Booking ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 01 of 10 &middot; 8 weeks before your move</div><div class="wk">Planning &amp; Booking</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 13</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">Eight weeks out, your move is still more idea than upheaval &mdash; and that makes this the perfect moment to lock in the big decisions while there&rsquo;s no pressure on the clock. Book your removals quote in early, because the most popular dates around completion tend to go first, then decide how hands-on you&rsquo;d like to be: pack yourself with our boxes, or let our team take care of every cupboard and drawer for you. It&rsquo;s also the ideal time to begin a gentle, room-by-room declutter &mdash; every item you donate, sell or recycle now is one less thing to wrap, carry and find a home for at the other end. Work through the checklist below at your own pace, ticking each box as you go, and you&rsquo;ll head into the weeks ahead feeling calm and organised rather than rushed.</p></div><div class="pic"><img src="../../images/photos/professionally-packed-moving-boxes-ready.webp" alt="Wolves Removals Planning &amp; Booking"></div></div>
+    <div class="sec"><h3><span class="n">1</span> Book your move &amp; survey</h3><ul class="todo two"><li>Request your free quote &mdash; in person or by video</li><li>Confirm completion dates for both properties</li><li>Accept your booking &amp; check the confirmation</li><li>Book early &mdash; the best dates go first</li></ul></div><div class="sec"><h3><span class="n">2</span> Decide what we&rsquo;ll handle</h3><ul class="todo two"><li>Pack yourself, or have our team pack for you</li><li>Add furniture dismantling &amp; reassembly</li><li>Decide whether you&rsquo;ll need storage</li><li>Order boxes &amp; packing materials from us</li></ul></div><div class="sec"><h3><span class="n">3</span> Start getting organised</h3><ul class="todo two"><li>Open a moving folder for quotes &amp; dates</li><li>Begin a room-by-room declutter</li><li>Donate, sell or recycle what won&rsquo;t move</li><li>Measure large furniture for the new home</li><li>Note anything fragile or valuable to flag</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 02 — Preparation &amp; Planning ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 02 of 10 &middot; 7 weeks before your move</div><div class="wk">Preparation &amp; Planning</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 12</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">With the big decisions behind you, this week is all about the practical side &mdash; the people, the journey and the materials that quietly make moving day run like clockwork. Think about everyone under your roof first: talk children through what&rsquo;s happening so the move feels like an adventure rather than a worry, and line up childcare or a pet-sitter so the day itself stays calm. Take a proper look at access and parking at both addresses too &mdash; narrow lanes, lifts, time limits and permit zones are all far easier to sort now than on the morning itself, and a quick word with us means we&rsquo;ll arrange anything that&rsquo;s needed. Finally, gather your packing materials in good time: a mix of box sizes, wardrobe boxes for hanging clothes, plenty of bubble wrap and strong tape, and a marker pen for clear, colour-coded room labels.</p></div><div class="pic"><img src="../../images/photos/packing-cardboard-box-home-removals.webp" alt="Wolves Removals Preparation &amp; Planning"></div></div>
+    <div class="sec"><h3><span class="n">1</span> Prepare your household</h3><ul class="todo two"><li>Talk children through the move &amp; new home</li><li>Arrange childcare or a pet-sitter for the day</li><li>Pack a comfort bag of toys for younger ones</li><li>Plan how you&rsquo;ll keep everyone fed &amp; watered</li></ul></div><div class="sec"><h3><span class="n">2</span> Plan the journey</h3><ul class="todo two"><li>Check access &amp; parking at both properties</li><li>Note narrow lanes, lifts or permit zones</li><li>Tell us &mdash; we&rsquo;ll arrange any permits needed</li><li>Map your own route for the day</li></ul></div><div class="sec"><h3><span class="n">3</span> Sort your packing materials</h3><ul class="todo two"><li>Boxes in several sizes, plus book boxes</li><li>Wardrobe boxes for hanging clothes</li><li>Bubble wrap, packing paper &amp; strong tape</li><li>Marker pens &amp; colour-coded room labels</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 03 — Notifications ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 03 of 10 &middot; 6 weeks before your move</div><div class="wk">Notifications</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 12</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">Six weeks out, it&rsquo;s time to start letting the right people know you&rsquo;re on the move &mdash; and doing it steadily now saves a frantic scramble later. Work through the essentials first: your energy suppliers, water authority and council tax, then your bank, pension and insurers, your employer and HMRC, and your broadband, phone and TV providers. Use the table below to record exactly who you&rsquo;ve contacted, the date you did it and any reference numbers they give you, so nothing falls through the cracks and you&rsquo;ve a clear paper trail if you ever need it. This is also a natural moment to make a real start on packing the parts of the house you rarely touch &mdash; the loft, the garage and the spare room &mdash; and to jot down the easily-forgotten names like schools, the DVLA, subscriptions and regular deliveries.</p></div><div class="pic"><img src="../../images/photos/packing-books-into-moving-boxes.webp" alt="Wolves Removals Notifications"></div></div>
+    <table class="ctable"><tr><th>1 &mdash; Tell the important people</th><th class="c">Done</th><th>Provider</th><th>Date completed</th><th>Notes</th></tr><tr><td class="tk">Energy suppliers, water authority &amp; council tax</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Bank, building society, pension &amp; insurers</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Employer &amp; HMRC</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Broadband, phone &amp; TV providers, TV Licence</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr></table><div class="sec"><h3><span class="n">2</span> Make a start on packing</h3><ul class="todo two"><li>Begin with the loft, garage &amp; spare rooms</li><li>Pack room by room, keeping boxes together</li><li>Label every box with its room &amp; contents</li><li>Set aside a &ldquo;do not pack&rdquo; daily-use zone</li></ul></div><div class="sec"><h3><span class="n">3</span> Don&rsquo;t forget</h3><ul class="todo two"><li>Schools, childcare, doctor, dentist &amp; optician</li><li>DVLA &mdash; driving licence &amp; V5C logbook</li><li>Subscriptions, clubs &amp; memberships</li><li>Online shops &amp; regular deliveries</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 04 — Change of Address ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 04 of 10 &middot; 5 weeks before your move</div><div class="wk">Change of Address</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 12</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">Five weeks to go, and the focus turns to your address &mdash; making sure everyone who needs your new one actually has it. Run through the list methodically: your driving licence and vehicle records, your GP, dentist, optician and pharmacy, your online shops and regular deliveries, and any subscriptions or memberships that follow you to your door. Record each one in the table as you go, so a single glance tells you what&rsquo;s done and what&rsquo;s still outstanding, and nothing important slips quietly through the net. With the admin in hand, start picturing life in the new place &mdash; decide roughly where the larger furniture will live, measure any doorways that look tight, and re-confirm your completion dates with your solicitor and agent. A little forward planning now means the crew can carry each piece straight to the right room on the day.</p></div><div class="pic"><img src="../../images/photos/handling-gilt-framed-antique-painting.webp" alt="Wolves Removals Change of Address"></div></div>
+    <table class="ctable"><tr><th>1 &mdash; Change of address</th><th class="c">Done</th><th>Provider</th><th>Date completed</th><th>Notes</th></tr><tr><td class="tk">Driving licence &amp; vehicle records</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">GP, dentist, optician &amp; pharmacy</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Online shopping &amp; deliveries</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Subscriptions &amp; memberships</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr></table><div class="sec"><h3><span class="n">2</span> Plan every room</h3><ul class="todo two"><li>Decide where furniture will go</li><li>Use &ldquo;keep to hand&rdquo; labels</li><li>Mark anything needing special care</li><li>Measure doorways for big pieces</li></ul></div><div class="sec"><h3><span class="n">3</span> Confirm the details</h3><ul class="todo two"><li>Re-check completion dates with solicitor &amp; agent</li><li>Confirm your booking &amp; any add-ons with us</li><li>Book time off for the move &amp; a settling day</li><li>Top up any packing materials you&rsquo;re low on</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 05 — Documents &amp; Storage ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 05 of 10 &middot; 4 weeks before your move</div><div class="wk">Documents &amp; Storage</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 8</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">A month to go, and this is the week to gather the paperwork you&rsquo;ll want to keep close rather than packed away in a box somewhere. Passports, birth certificates and medical records, your financial and insurance documents, warranties, manuals and any valuations &mdash; collect them together and keep them with you, ideally in the &ldquo;open first&rdquo; box that travels in your own car. It&rsquo;s also worth giving a little thought to storage, even if you&rsquo;re sure you won&rsquo;t need it: completion dates have a habit of not quite lining up, and our clean, dry, alarmed containerised storage bridges any gap with no long tie-ins, for a few days or a few months. Because we can pack, transport and store everything under one roof, there&rsquo;s no juggling separate companies &mdash; just one friendly team looking after the lot.</p></div><div class="pic"><img src="../../images/photos/storage-warehouse-aisle-wooden-containers.webp" alt="Wolves Removals Documents &amp; Storage"></div></div>
+    <div class="sec"><h3><span class="n">1</span> Gather your important documents</h3><ul class="todo two"><li>Passports, birth certificates &amp; medical records</li><li>Financial &amp; insurance paperwork</li><li>Warranties, manuals &amp; valuations</li><li>Keep them together in your &ldquo;open first&rdquo; box</li></ul></div><div class="sec"><h3><span class="n">2</span> Think about storage</h3><ul class="todo two"><li>Clean, dry, alarmed containerised storage</li><li>Short &amp; long-term &mdash; no long tie-ins</li><li>Bridges any gap between completion dates</li><li>We can pack, transport &amp; store it all</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 06 — Packing ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 06 of 10 &middot; 3 weeks before your move</div><div class="wk">Packing</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 12</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">The finish line is in sight, and with three weeks left packing steps up a gear &mdash; but worked at steadily, it never needs to feel overwhelming. Wrap fragile items individually and pad out every gap so nothing can shift in transit, keep heavy things in small boxes and lighter things in large ones, and label each box clearly with its room and a &ldquo;this way up&rdquo; where it matters. Set aside an essentials box to pack last and open first, and keep anything genuinely irreplaceable &mdash; jewellery, documents, that one sentimental piece &mdash; to carry yourself. Now&rsquo;s also the moment for the jobs people forget: start running down the freezer, and safely dispose of anything that can&rsquo;t travel such as paint, fuel and aerosols, checking with us if you&rsquo;re ever unsure. Tick each section off below and the house will empty out around you in a calm, orderly way.</p></div><div class="pic"><img src="../../images/photos/wolves-team-wrapping-furniture-move.webp" alt="Wolves Removals Packing"></div></div>
+    <div class="sec"><h3><span class="n">1</span> Pack the bulk of your home</h3><ul class="todo two"><li>Wrap fragiles individually &amp; pad every gap</li><li>Heavy items in small boxes, light in large</li><li>Keep an &ldquo;essentials&rdquo; box aside to pack last</li><li>Label clearly, including &ldquo;this way up&rdquo;</li></ul></div><div class="sec"><h3><span class="n">2</span> Safety &amp; disposal</h3><ul class="todo two"><li>Use up freezer food &amp; perishables</li><li>Safely dispose of paint, fuel &amp; aerosols</li><li>These can&rsquo;t be transported &mdash; check with us</li><li>Set aside valuables to carry yourself</li></ul></div><div class="sec"><h3><span class="n">3</span> Confirm the arrangements</h3><ul class="todo two"><li>Confirm the moving plan &amp; timings with us</li><li>Arrange how &amp; when the balance is paid</li><li>Keep keys, alarm codes &amp; contacts to hand</li><li>Book parking or a permit suspension if needed</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 07 — Final Arrangements ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 07 of 10 &middot; 2 weeks before your move</div><div class="wk">Final Arrangements</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 12</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">Almost there &mdash; with two weeks to go it&rsquo;s time to tie up the loose ends so the final stretch feels effortless. Touch base with the people and services that keep your household running: confirm closing readings and accounts with your utilities, arrange for any appliances that need disconnecting or plumbing in, and make sure the right people have your moving date. Re-confirm the plan with us too &mdash; the timings, the access, who&rsquo;s paying the balance and when &mdash; so there are no last-minute surprises on either side. This is also a good week to sort anything that needs a little notice, from booking a parking suspension to arranging childcare or a pet-sitter for the day itself. Work through the checklist below and you&rsquo;ll reach the final week with the big pieces already in place and very little left to worry about.</p></div><div class="pic"><img src="../../images/photos/furniture-wrapped-protected-removal.webp" alt="Wolves Removals Final Arrangements"></div></div>
+    <table class="ctable"><tr><th>1 &mdash; Utilities &amp; appliances</th><th class="c">Done</th><th>Provider</th><th>Date completed</th><th>Notes</th></tr><tr><td class="tk">Arrange to disconnect cooker, gas fire &amp; washer</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Book any plumbing or electrical disconnections</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Confirm final meter readings with suppliers</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Set up services at the new home</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Cancel window cleaner, gardener &amp; milk delivery</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr><tr><td class="tk">Plan to defrost the fridge-freezer</td><td class="dn"><span class="dbox"></span></td><td class="pv"></td><td class="dt"></td><td class="nt"></td></tr></table><div class="sec"><h3><span class="n">2</span> People &amp; pets</h3><ul class="todo two"><li>Confirm childcare or pet care for the day</li><li>Update microchip &amp; pet ID details</li><li>Tell neighbours your moving date</li></ul></div><div class="sec"><h3><span class="n">3</span> Final packing push</h3><ul class="todo two"><li>Pack all non-essentials, daily items only left</li><li>Take down curtains, blinds &amp; wall fittings</li><li>Dismantle flat-pack (or leave it to us)</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 08 — Final Week ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 08 of 10 &middot; 1 week before your move</div><div class="wk">Final Week</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 18</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">This is the final stretch, and a handful of well-chosen jobs this week is all that stands between you and a calm moving morning. Empty, defrost and dry the fridge-freezer in good time, give each room a quick clean as it empties, and finish the packing bar the one essentials box you&rsquo;ll live out of. Pack an overnight bag for everyone &mdash; clothes, toiletries, medication, chargers and a few snacks &mdash; and build your &ldquo;open first&rdquo; box with the kettle, mugs, tea and coffee, toilet roll, a torch, a basic cleaning kit and anything else you&rsquo;ll want within arm&rsquo;s reach at the other end. Re-confirm key collection times with your agent, charge your phone and save our number, and settle the balance as agreed. Then do the most important job of all: get an early night, because tomorrow&rsquo;s the day and we&rsquo;ll take it from here.</p></div><div class="pic"><img src="../../images/photos/removal-van-loaded-sussex-move.webp" alt="Wolves Removals Final Week"></div></div>
+    <div class="sec"><h3><span class="n">1</span> Defrost &amp; finish up</h3><ul class="todo two"><li>Empty, defrost &amp; dry the fridge-freezer</li><li>Do a final clean as rooms empty</li><li>Finish packing bar your essentials box</li></ul></div><div class="sec"><h3><span class="n">2</span> Pack an overnight bag</h3><ul class="todo two"><li>Clothes, toiletries &amp; medication</li><li>Chargers, documents &amp; valuables</li><li>Snacks, drinks &amp; the kettle box</li></ul></div><div class="sec"><h3><span class="n">3</span> Your &ldquo;open first&rdquo; essentials box</h3><ul class="todo two"><li>Kettle, tea, coffee &amp; mugs</li><li>Toilet roll &amp; hand soap</li><li>Light bulbs &amp; a torch</li><li>Phone chargers</li><li>Basic cleaning kit</li><li>Medication &amp; first aid</li><li>Snacks &amp; bottled water</li><li>Keys, documents &amp; cash</li></ul></div><div class="sec"><h3><span class="n">4</span> Confirm the final details</h3><ul class="todo two"><li>Re-confirm key collection times with your agent</li><li>Charge your phone &amp; save our number</li><li>Arrange the balance payment as agreed</li><li>Get an early night &mdash; tomorrow&rsquo;s the day!</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 09 — Moving Day ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 09 of 10 &middot; Moving day</div><div class="wk">Moving Day</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 10</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">This is the day all that careful planning quietly pays off &mdash; and from here, the heavy lifting is genuinely ours. Your foreman will walk the property with you first thing to confirm the plan, then the crew gets to work while your job becomes the pleasant one: overseeing, answering the odd question and keeping the tea flowing. Before you leave the old home, take your final meter readings, do one last check of every room, the loft and the garden, switch off the appliances and lock up, leaving the keys exactly as agreed with your agent. At the new place, collect the keys, show the crew where each room is so everything lands in the right spot, take fresh meter readings, and have a quick look over the van to be sure nothing&rsquo;s been left behind. Then put the kettle on &mdash; you&rsquo;ve well and truly earned it.</p></div><div class="pic"><img src="../../images/photos/loading-boxes-furniture-removal-van.webp" alt="Wolves Removals Moving Day"></div></div>
+    <div class="sec"><h3><span class="n">1</span> Before we leave the old home</h3><ul class="todo two"><li>Walk round with our foreman &amp; confirm the plan</li><li>Take final meter readings (gas, electric, water)</li><li>Do a last check of every room, loft &amp; garden</li><li>Switch off appliances &amp; lock up</li><li>Leave keys as agreed with your agent</li></ul></div><div class="sec"><h3><span class="n">2</span> At your new home</h3><ul class="todo two"><li>Confirm key collection from your agent</li><li>Show the crew where everything goes</li><li>Take new meter readings</li><li>Check nothing&rsquo;s been missed on the van</li><li>Put the kettle on &mdash; you&rsquo;ve earned it</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div><!-- ===================== STAGE 10 — Settling In ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Stage 10 of 10 &middot; Now you&rsquo;re settled in</div><div class="wk">Settling In</div></div>
+    <div class="hprog"><div class="hring"><span class="hpct">0%</span></div><div class="hmeta"><span class="hlab">Completed</span><span class="hcnt">0 of 14</span></div></div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero"><div class="txt"><p class="intro">You&rsquo;re in &mdash; and a little order, in the right order, is what turns a houseful of boxes into a home. Start with the practical bits that bring real peace of mind: find the stopcock and fuse box, test the smoke and carbon-monoxide alarms, get the broadband and utilities switched over, and bleed the radiators so the heating&rsquo;s ready for the evening. Then unpack like a pro by making the essentials liveable first &mdash; the beds, the kitchen and the bathroom &mdash; before working room by room, checking each box is truly empty before you flatten it for us to collect. There&rsquo;s no prize for finishing in a day, so take your time and enjoy the space. When you&rsquo;re ready, tidy up the last of the admin: update your driving licence and log book, tell your car insurer, move your memberships and the electoral roll across, and set up mail redirection if you haven&rsquo;t already.</p></div><div class="pic"><img src="../../images/photos/wolves-mover-hanging-framed-picture.webp" alt="Wolves Removals Settling In"></div></div>
+    <div class="sec"><h3><span class="n">1</span> First jobs in your new home</h3><ul class="todo two"><li>Find the stopcock &amp; fuse box</li><li>Test the smoke &amp; CO alarms</li><li>Set up broadband &amp; utilities</li><li>Register with a local GP &amp; dentist</li><li>Bleed radiators &amp; check the heating</li></ul></div><div class="sec"><h3><span class="n">2</span> Unpack like a pro</h3><ul class="todo two"><li>Beds, kitchen &amp; bathroom first</li><li>Check each empty box before flattening</li><li>Fold boxes flat &mdash; we&rsquo;ll collect them</li><li>Take your time &amp; enjoy your new space</li></ul></div><div class="sec"><h3><span class="n">3</span> Update your details</h3><ul class="todo two"><li>Update driving licence and log book</li><li>Notify car insurance of new address</li><li>Update gym, club, or season ticket memberships</li><li>Arrange mail redirection (if not already done)</li><li>Update the electoral roll</li></ul></div>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div>
+<!-- ===================== CONTACTS 1 ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Keep this somewhere handy</div><div class="wk">Helpful Contacts &amp; Emergency Numbers</div></div>
+    <div class="pill">1 of 2</div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <p class="intro">In an emergency always dial 999. Keep the rest of these numbers to hand throughout your move &mdash; fill in your own where blank.</p>
+    <table class="cttable"><tr><th>Contact</th><th>Name</th><th>Phone number</th><th>Notes</th></tr><tr><td class="ct">Emergency Services</td><td class="cn"></td><td class="cp">999</td><td class="cnt"></td></tr><tr><td class="ct">NHS non-emergency</td><td class="cn"></td><td class="cp">111</td><td class="cnt"></td></tr><tr><td class="ct">Police non-emergency</td><td class="cn"></td><td class="cp">101</td><td class="cnt"></td></tr><tr><td class="ct">Gas emergency (National Gas)</td><td class="cn"></td><td class="cp">0800 111 999</td><td class="cnt"></td></tr><tr><td class="ct">Power cut line</td><td class="cn"></td><td class="cp">105</td><td class="cnt"></td></tr><tr><td class="ct">Floodline</td><td class="cn"></td><td class="cp">0345 988 1188</td><td class="cnt"></td></tr><tr><td class="ct">Wolves Removals</td><td class="cn"></td><td class="cp">01903 893731</td><td class="cnt"></td></tr><tr><td class="ct">Solicitor / conveyancer</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Estate agent</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Buildings &amp; contents insurer</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr></table>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div>
+<!-- ===================== CONTACTS 2 ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Keep this somewhere handy</div><div class="wk">Helpful Contacts &amp; Emergency Numbers</div></div>
+    <div class="pill">2 of 2</div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <p class="intro">Your new local contacts &mdash; fill these in as you register and settle into your new area.</p>
+    <table class="cttable"><tr><th>Contact</th><th>Name</th><th>Phone number</th><th>Notes</th></tr><tr><td class="ct">Electricity supplier</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Gas supplier</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Water supplier</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Local council</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Broadband / phone</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Doctor / GP</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Dentist</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Optician</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Vet</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">School / nursery</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Bank / building society</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr><tr><td class="ct">Other</td><td class="cn"></td><td class="cp"></td><td class="cnt"></td></tr></table>
+    <div class="addnotes"><span class="anlbl">Additional Notes</span><div class="anbox"></div></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Your Essential Moving Home Checklist</span><span class="nx">Next &raquo;</span></div>
+</div>
+
+<!-- ===================== PAGE 12 — CONTACT ===================== -->
+<div class="page">
+  <div class="hd"><img class="logo" src="../../images/brand/wolves-removals-logo-mark.png" alt="Wolves Removals">
+    <div class="meta"><div class="kicker">Get in touch</div><div class="wk">You&rsquo;re in safe hands</div></div>
+    <div class="pill">Contact</div></div>
+  <div class="bd">
+    <div class="mdate"><span>Your Moving Date:</span><span class="mline"></span></div>
+    <div class="hero">
+      <div class="txt"><p class="lead">Whenever you&rsquo;re ready to move, we&rsquo;re ready to help.</p><p class="intro">From the very first survey to the very last box, we look after every detail with genuine care &mdash; the kind a family-run team brings because its name is on every van. Local, national or European; home or business; a single antique or an entire house &mdash; talk to us for a free, no-obligation quote and a clear, fixed written price.</p></div>
+      <div class="pic"><img src="../../images/photos/wolves-removals-team-fleet-vans.webp" alt="The Wolves Removals team with their fleet of vans in Sussex"></div>
+    </div>
+    <div class="stat mb3">
+      <div class="s"><b>2016</b><span>Trusted since</span></div>
+      <div class="s"><b>100+</b><span>Years&rsquo; combined</span></div>
+      <div class="s"><b>5&#9733;</b><span>Checkatrade rated</span></div>
+      <div class="s"><b>UK</b><span>&amp; Europe wide</span></div>
+    </div>
+    <div class="cols">
+      <div class="c"><div class="card" style="height:100%;">
+        <h3>Visit &amp; contact us</h3>
+        <p style="margin:0; font-size:9pt; line-height:1.6; color:var(--body);">Wolves Removals<br>Doryln House, London Road<br>Ashington, Pulborough<br>West Sussex, RH20 3JT<br><br><strong>Office:</strong> 01903 893731<br><strong>Mobile:</strong> 07789 390421<br><strong>Email:</strong> contact@wolves-removals.co.uk</p>
+      </div></div>
+      <div class="c"><div class="card" style="height:100%;">
+        <h3>How we help</h3>
+        <ul class="bul">
+          <li>Home &amp; commercial removals</li>
+          <li>Full packing &amp; unpacking</li>
+          <li>Secure containerised storage</li>
+          <li>Antiques &amp; specialist moves</li>
+          <li>UK-wide &amp; European relocations</li>
+        </ul>
+        <p style="margin:2mm 0 0; font-size:8.2pt; color:var(--slate);"><strong style="color:var(--green-d)">LAPADA</strong> member &middot; <strong style="color:var(--green-d)">Checkatrade</strong> verified &middot; fully covered</p>
+      </div></div>
+    </div>
+    <div class="cbox green mt3" style="text-align:center;"><h4 style="font-size:14pt;">Ready to move? Call 01903&nbsp;893731</h4><p style="font-size:9.6pt;">or get your free, no-obligation quote at <strong>wolves-removals.co.uk</strong></p></div>
+  </div>
+  <div class="ft"><span><b>Wolves Removals</b> &middot; Local, national &amp; European removals &amp; storage</span><span class="nx">wolves-removals.co.uk</span></div>
+</div>
+
+<!-- ===================== PAGE 13 — BACK COVER ===================== -->
+<div class="page bcv">
+  <div class="bg"></div>
+  <svg class="sw" viewBox="0 0 210 297" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#cfd2d5" stroke-linecap="round">
+      <path d="M -25 232 C 55 205 85 150 240 104" stroke-width="22" opacity="0.07"/>
+      <path d="M -25 250 C 65 218 108 150 248 88" stroke-width="12" opacity="0.11"/>
+      <path d="M -25 266 C 75 232 128 152 252 72" stroke-width="6.5" opacity="0.14"/>
+      <path d="M -25 281 C 85 246 148 160 256 60" stroke-width="3.2" opacity="0.16"/>
+      <path d="M -25 295 C 95 258 165 172 260 50" stroke-width="1.6" opacity="0.17"/>
+    </g>
+  </svg>
+  <div class="info">
+    <div class="contact">Mobile 07789&nbsp;390421<br>Office 01903&nbsp;893731<br>contact@wolves-removals.co.uk<br>www.wolves-removals.co.uk</div>
+    <div class="addr">
+      <div class="blk"><span class="nm">Wolves Removals HQ</span><br>Doryln House, London Road,<br>Ashington, RH20&nbsp;3JT, West Sussex</div>
+    </div>
+  </div>
+  <div class="finalnotes"><span class="fnlbl">Final Notes &amp; Reminders</span><div class="fnbox"></div></div>
+</div>
+
+</body>
+</html>

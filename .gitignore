@@ -1,0 +1,44 @@
+# Reference material — original WP theme + captured live HTML (not deployed)
+_source/
+
+# Secrets — NEVER commit. Production keys live in the Cloudflare Pages dashboard;
+# .dev.vars is for local `wrangler pages dev` only.
+.dev.vars
+.env
+.env.*
+
+# Dependencies / build
+node_modules/
+.cache/
+*.pyc
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Raw-photo archive (originals + contact sheet). NOT the image source anymore —
+# images/photos/ is the single optimised-image folder the site uses. Add new photos with
+# tools/optimise-photo.sh <src> <name>, which writes straight to images/photos/.
+_photo-library/
+Jacks Photos.zip
+
+# Raw source media & old-site backups — NOT deployed. The live site uses the optimised
+# images/photos/*.webp and videos/*.mp4 only; these are multi-GB working archives.
+Mark Photos/
+.deleted-site/
+*.zip
+videos/*.MOV
+videos/*.mov
+
+# Box-shop product *source* PNGs (the site serves optimised images/photos/*.webp instead)
+/*-PNG.png
+
+# Stray / unused root assets not referenced by any page
+/wolves removals logo.png
+/0ef874a3-3e71-40a6-8936-da49bf76c15a-762x726.jpg
+/Wolves-Terms.pdf.pagespeed.ce_.QCA0iEjg1R.pdf
+
+# Business/legal filings must never be committed (Companies House docs etc.)
+*_cs01_*.pdf
+*_aa_*.xhtml
