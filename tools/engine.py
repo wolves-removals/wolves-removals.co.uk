@@ -1275,7 +1275,7 @@ def methodology_timeline(steps, title, subtitle, write_up_html, bg="bg-white", r
             f'{svg}</span>'
             '<div class="pt-1 lg:pt-2">'
             f'<h3 class="uppercase font-bold text-black leading-tight text-base lg:text-lg">{label}</h3>'
-            f'<p class="text-darkgrey leading-snug mt-0.5">{desc}</p>'
+            f'<p class="text-black leading-snug mt-0.5">{desc}</p>'
             '</div></li>')
     card = (
         '<div class="bg-white rounded-2xl shadow-custom border border-border p-6 lg:p-8 h-full">'
@@ -1285,7 +1285,7 @@ def methodology_timeline(steps, title, subtitle, write_up_html, bg="bg-white", r
         '<span aria-hidden="true" class="absolute top-7 lg:top-8 bottom-7 lg:bottom-8 left-7 lg:left-8 -translate-x-1/2 w-0.5 bg-[#262626]/30"></span>'
         f'{items}</ol></div>')
     # write-up sits top-aligned with the timeline (its heading lines up with the card title)
-    writeup = f'<div class="reveal-lr space-y-4 lg:space-y-5 [&_p]:text-darkgrey [&_p]:leading-relaxed">{write_up_html}</div>'
+    writeup = f'<div class="reveal-lr space-y-4 lg:space-y-5 [&_p]:text-black [&_p]:leading-relaxed">{write_up_html}</div>'
     left, right = (card, writeup) if reverse else (writeup, card)
     return section(
         '<div class="grid grid-cols-12 gap-8 lg:gap-12 items-start">'
