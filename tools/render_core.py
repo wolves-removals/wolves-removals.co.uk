@@ -676,6 +676,16 @@ def gallery():
         "wrapped-furniture-protective-covers-removals",
         "team-preparing-dining-table-move",
         "wrapping-table-packed-room",
+        "wolves-removals-crew-team",
+        "wolves-removals-wolf-head-emblem",
+        "loading-crates-into-street-van",
+        "wolves-luton-van-sussex-home",
+        "furniture-loaded-sussex-removal-service",
+        "two-removal-vans-at-country-house",
+        "two-vans-at-country-house",
+        "wolves-removals-storage-certificate-recognition",
+        "packing-furniture-in-attic-bedroom",
+        "wolves-removals-storage-info-leaflet",
     }
     EXCLUDE = BOXSHOP | GALLERY_DUPES
     # Show EVERY remaining content photo in the library. Dedupe the pool, then order
