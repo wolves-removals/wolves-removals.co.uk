@@ -387,6 +387,8 @@ PAGE_IMG_PINS = {
         "sections": {
             "Pieces a Crate Is Built For": ("loading-wooden-crate-into-container",
                 "A Wolves Removals crew loading a wooden crate into a storage container", False),
+            "Foam, Bracing": ("wolves-mover-taping-furni-soft",
+                "A Wolves Removals mover in white gloves taping Furni-Soft padding around furniture", False),
         },
     },
     "contract-delivery-services": {
