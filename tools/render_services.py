@@ -358,6 +358,14 @@ PAGE_IMG_PINS = {
         "panel": ("carrying-antique-piano-specialist-removals",
                   "Wolves Removals specialists carrying an antique piano during a careful move"),
     },
+    "custom-crate-service": {
+        "panel": ("wheeling-export-crate-on-trolley",
+                  "A Wolves Removals export crate being wheeled out on a trolley"),
+        "sections": {
+            "Pieces a Crate Is Built For": ("loading-wooden-crate-into-container",
+                "A Wolves Removals crew loading a wooden crate into a storage container", False),
+        },
+    },
     "contract-delivery-services": {
         "sections": {
             "White-Goods Delivery": ("wrapped-furniture-and-labelled-boxes",
