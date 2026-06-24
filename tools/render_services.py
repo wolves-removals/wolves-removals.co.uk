@@ -623,7 +623,9 @@ def build_service(s):
         title=s["title"], description=s["meta"], canonical_path=f"/services/{slug}/",
         body=body, og_image="images/photos/" + hero_photo[0] + ".webp",
         breadcrumb=[("Home", "/"), ("Services", "/services/"), (s["name"], f"/services/{slug}/")],
-        extra_schema=[faq_schema], active="services", show_quote=False)
+        extra_schema=[faq_schema, E.schema_service(s["name"], s["meta"], f"/services/{slug}/",
+                      image="images/photos/" + hero_photo[0] + ".webp")],
+        active="services", show_quote=False)
     return E.write(f"services/{slug}/index.html", doc)
 
 def _svc(slug):
@@ -726,7 +728,10 @@ def build_hub():
         title="Removal & Storage Services | Wolves Removals — Sussex",
         description="Professional removal & storage services from Wolves Removals: house & commercial moves, international, packing, antiques, piano moving and secure storage across Sussex.",
         canonical_path="/services/", body=body, og_image=HERO_IMG,
-        extra_schema=[faq_block(faqs, heading="x")[1]],
+        extra_schema=[faq_block(faqs, heading="x")[1],
+                      E.schema_service("Removal &amp; Storage Services",
+                          "Professional removal and storage services across Sussex, Surrey, Hampshire and Kent &mdash; house and commercial moves, international, packing, antiques, piano moving and secure storage.",
+                          "/services/", image=HERO_IMG, service_type="Removals and storage")],
         breadcrumb=[("Home", "/"), ("Services", "/services/")], active="services")
     return E.write("services/index.html", doc)
 

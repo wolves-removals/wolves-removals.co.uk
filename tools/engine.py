@@ -1638,6 +1638,23 @@ def schema_breadcrumb(trail):
             for i, (n, p) in enumerate(trail)]
     }
 
+def schema_service(name, description, path, image=None, service_type=None):
+    """schema.org/Service for a service page — the specific offering, linked to the
+    MovingCompany as its provider, with the areas we cover and a serviceType."""
+    b = S.BUSINESS
+    sch = {
+        "@context": "https://schema.org", "@type": "Service",
+        "@id": abs_url(path) + "#service",
+        "name": _html.unescape(name), "description": _strip_tags(_html.unescape(description)),
+        "serviceType": _html.unescape(service_type or name),
+        "url": abs_url(path),
+        "provider": {"@id": S.SITE_URL + "/#business"},
+        "areaServed": [{"@type": "AdministrativeArea", "name": a} for a in b["area_served"]],
+    }
+    if image:
+        sch["image"] = abs_url(image)
+    return sch
+
 # ---------------------------------------------------------------- PAGE
 def _dedupe_images(html, seen=None):
     """RULE: no /images/photos/ image may appear twice on a page. Each repeat is
