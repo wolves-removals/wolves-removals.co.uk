@@ -356,6 +356,13 @@ PAGE_IMG_PINS = {
     },
     "specialised-antiques-moving": {
         **_ANTIQUES_HIP,
+        "exclude": ["careful-packing-sussex-home-removal", "carrying-antique-piano-specialist-removals"],
+        "sections": {
+            "Trusted by Collectors": ("antique-marble-top-gilt-commode",
+                "An antique Louis XVI marble-topped gilt-mounted commode in a gallery", False),
+            "Handling Each Type of Antique": ("antique-marble-draped-statue",
+                "An antique marble statue of a draped female figure on a marble pedestal", False),
+        },
     },
 }
 
