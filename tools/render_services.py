@@ -354,6 +354,14 @@ PAGE_IMG_PINS = {
             "carrying-antique-piano-specialist-removals",
         ],
     },
+    "white-glove-service": {
+        "panel": ("wolves-crew-handling-large-framed-art",
+                  "Wolves Removals crew in white gloves handling a large framed artwork"),
+        "sections": {
+            "What a White-Glove Move": ("lapada-approved-service-provider",
+                "LAPADA approved service provider, Association of Art &amp; Antiques Dealers", True),
+        },
+    },
     "specialised-antiques-moving": {
         **_ANTIQUES_HIP,
         "exclude": ["careful-packing-sussex-home-removal", "carrying-antique-piano-specialist-removals"],
