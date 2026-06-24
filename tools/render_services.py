@@ -261,6 +261,8 @@ PAGE_IMG_PINS = {
                 "Blankets and towels folded and arranged in a wooden wardrobe during a full unpacking service", False),
             "Furniture Placement, Reassembly": ("furniture-wrapped-blue-moving-blankets",
                 "Furniture wrapped in blue moving blankets being positioned during an unpack", False),
+            "Packing Materials Removed": ("loading-van-rural",
+                "A Wolves Removals van being loaded to take away packing materials after an unpack", False),
         },
     },
     # House removals: pin the "Smooth Moving Day" row to a careful-handling photo instead of
