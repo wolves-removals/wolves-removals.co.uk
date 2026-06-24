@@ -471,8 +471,10 @@ def feature_panel(heading_html, body_html, photo, reverse=False, bg="bg-white", 
     """Slate feature panel (old-site style): a rounded dark-grey card holding a
     white-framed photo on one side and white heading/body + CTA on the other."""
     b = S.BUSINESS
+    _op = photo[2] if len(photo) > 2 else "center"   # optional object-position (e.g. "top" to keep faces in frame)
+    _ex = f'style="object-position:{_op}"' if _op != "center" else ""
     media = (f'<div class="relative h-72 sm:h-96 lg:h-full overflow-hidden rounded-xl border-[5px] border-white shadow-lg">'
-             f'{img("images/photos/" + photo[0] + ".webp", photo[1], cls="absolute inset-0 w-full h-full object-cover")}</div>')
+             f'{img("images/photos/" + photo[0] + ".webp", photo[1], cls="absolute inset-0 w-full h-full object-cover", extra=_ex)}</div>')
     cta_html = ""
     if with_cta:
         cta_html = (
