@@ -1611,9 +1611,31 @@ def _strip_tags(t):
     return re.sub(r"<[^>]+>", "", str(t)).strip()
 
 # ---------------------------------------------------------------- SCHEMA
-def schema_localbusiness():
-    b = S.BUSINESS
+# Core services for the business OfferCatalog (powers service snippets on location pages).
+_SERVICE_OFFERINGS = [
+    ("House Removals", "/services/house-removals/"),
+    ("Commercial Removals", "/services/commercial-removals/"),
+    ("Man and Van", "/services/man-and-van/"),
+    ("International Removals", "/services/international-removals/"),
+    ("Packing Services", "/services/full-packing-service/"),
+    ("Secure Storage", "/services/storage/"),
+    ("Piano Moving", "/services/piano-moving/"),
+    ("Antiques and Fine Art Moving", "/services/specialised-antiques-moving/"),
+]
+def _offer_catalog():
     return {
+        "@type": "OfferCatalog", "name": "Removal and Storage Services",
+        "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": n, "url": abs_url(u)}}
+            for n, u in _SERVICE_OFFERINGS]
+    }
+
+def schema_localbusiness(local_area=None, local_area_type="City"):
+    """The MovingCompany (LocalBusiness) entity. On location pages, pass `local_area`
+    (the town/county) to add it to areaServed + serviceArea and attach the service
+    OfferCatalog, so the page signals that specific place for local SEO."""
+    b = S.BUSINESS
+    sch = {
         "@context": "https://schema.org", "@type": "MovingCompany",
         "@id": S.SITE_URL + "/#business",
         "name": b["name"], "legalName": b["legal_name"], "url": S.SITE_URL,
@@ -1628,6 +1650,12 @@ def schema_localbusiness():
         "openingHours": b["hours"],
         "sameAs": list(S.SOCIAL.values()),
     }
+    if local_area:
+        if local_area not in b["area_served"]:   # don't duplicate the broad regions
+            sch["areaServed"] = [{"@type": local_area_type, "name": local_area}] + sch["areaServed"]
+        sch["serviceArea"] = {"@type": local_area_type, "name": local_area}
+        sch["hasOfferCatalog"] = _offer_catalog()
+    return sch
 
 def schema_breadcrumb(trail):
     """trail: list of (name, path)."""
@@ -1795,7 +1823,7 @@ def blog_feed(n=10):
 
 def render_page(*, title, description, canonical_path, body, og_image=None,
                 robots="index, follow", breadcrumb=None, extra_schema=None, active="", show_quote=True, dedupe=True, show_fabs=True,
-                show_trust_reviews=True):
+                show_trust_reviews=True, local_area=None, local_area_type="City"):
     # Hero pinning: if this page had a curated hero in the 'Old wolves site' snapshot,
     # restore it — swap the eager hero <img> and point og/twitter/preload at it — so the
     # hero never drifts when the photo-rotation pool changes.
@@ -1829,7 +1857,7 @@ def render_page(*, title, description, canonical_path, body, og_image=None,
             '<a href="/frequently-asked-questions/">FAQs page</a> which is full of useful information.',
             "Get a Free Quote", "/get-a-quote/", bg="bg-white"), _seen)
     feed = _dedupe_images(blog_feed(), _seen) if dedupe else blog_feed()
-    schema = [schema_localbusiness()]
+    schema = [schema_localbusiness(local_area=local_area, local_area_type=local_area_type)]
     if breadcrumb:
         schema.append(schema_breadcrumb(breadcrumb))
     if extra_schema:

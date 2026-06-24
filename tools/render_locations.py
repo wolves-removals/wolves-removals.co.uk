@@ -273,7 +273,8 @@ def build_town(slug, town, county):
         canonical_path=f"/locations/{slug}/",
         body=body, og_image="images/photos/" + pics[0][0] + ".webp",
         breadcrumb=[("Home", "/"), ("Areas We Cover", "/locations/"), (town, f"/locations/{slug}/")],
-        extra_schema=[faq_schema], active="locations", show_trust_reviews=False)
+        extra_schema=[faq_schema], active="locations", show_trust_reviews=False,
+        local_area=town)
     return E.write(f"locations/{slug}/index.html", doc)
 
 def _town_pills(towns):
@@ -372,7 +373,8 @@ def build_hub(slug, name, counties):
         canonical_path=f"/locations/{slug}/",
         body=body, og_image="images/photos/" + pics[0][0] + ".webp",
         breadcrumb=[("Home", "/"), ("Areas We Cover", "/locations/"), (name, f"/locations/{slug}/")],
-        extra_schema=[faq_schema], active="locations", show_trust_reviews=False)
+        extra_schema=[faq_schema], active="locations", show_trust_reviews=False,
+        local_area=name, local_area_type="AdministrativeArea")
     return E.write(f"locations/{slug}/index.html", doc)
 
 def build_index():
