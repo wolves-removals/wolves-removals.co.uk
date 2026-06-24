@@ -18,7 +18,6 @@ NAMES = {
  "006":"trustyourmove-home-moving-member-badge",
  "007":"fine-art-room-antiques-removals",
  "008":"moving-made-easy-fleet-banner",
- "009":"wolves-removals-storage-info-leaflet",
  "010":"wolves-removals-wolf-head-logo",
  "011":"wolves-removals-grey-emblem-logo",
  "012":"wooden-crate-packed-wrapped-antiques",

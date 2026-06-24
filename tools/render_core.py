@@ -685,7 +685,6 @@ def gallery():
         "two-vans-at-country-house",
         "wolves-removals-storage-certificate-recognition",
         "packing-furniture-in-attic-bedroom",
-        "wolves-removals-storage-info-leaflet",
     }
     EXCLUDE = BOXSHOP | GALLERY_DUPES
     # Show EVERY remaining content photo in the library. Dedupe the pool, then order

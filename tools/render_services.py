@@ -357,9 +357,12 @@ PAGE_IMG_PINS = {
     "white-glove-service": {
         "panel": ("wolves-crew-handling-large-framed-art",
                   "Wolves Removals crew in white gloves handling a large framed artwork"),
+        "exclude": ["careful-packing-sussex-home-removal"],   # freed when the concierge row became a timeline
         "sections": {
             "What a White-Glove Move": ("lapada-approved-service-provider",
                 "LAPADA approved service provider, Association of Art &amp; Antiques Dealers", True),
+            "Handling, Crating": ("wolves-crew-carrying-wrapped-furniture",
+                "Wolves Removals crew in white gloves carrying an item wrapped in protective padding", False),
         },
     },
     "specialised-antiques-moving": {
@@ -404,6 +407,21 @@ INTL_STEPS = [
      "Unloading &amp; Placement", "Furniture set in the rooms you choose"),
     (_ri('<path d="M3.5 8.5l3-4.5h11l3 4.5"/><path d="M3.5 8.5v9.5a1 1 0 0 0 1 1h15a1 1 0 0 0 1-1V8.5"/><path d="M3.5 8.5h17M12 4v4.5"/>'),
      "Unpacking &amp; Cartons", "Boxes unpacked and packaging removed"),
+]
+
+# The white-glove "concierge process" shown as the same vertical timeline, worded for the
+# premium fully-managed service (mirrors the five stages listed in that section).
+WHITEGLOVE_STEPS = [
+    (_ri('<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9.5 4a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v1h-5V4z"/><path d="M8.7 10.5l1.3 1.3 2.3-2.3M8.7 15l1.3 1.3 2.3-2.3"/>'),
+     "Survey &amp; Plan", "Pre-move survey, inventory and room-by-room plan"),
+    (_ri('<path d="M3 7.5l9-4.5 9 4.5v9l-9 4.5-9-4.5v-9z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/>'),
+     "Full Packing", "Every room packed in premium materials"),
+    (_ri('<path d="M12 3l7 2.4v5.4c0 4.4-3 7.3-7 8.4-4-1.1-7-4-7-8.4V5.4L12 3z"/><path d="M9 12l2 2 4-4"/>'),
+     "Bespoke Protection", "Custom crates for the most delicate valuables"),
+    (_ri('<rect x="2.5" y="6.5" width="11" height="9" rx="1"/><path d="M13.5 9.5h4l3 3v3h-7z"/><circle cx="6.5" cy="17.3" r="1.7"/><circle cx="17.3" cy="17.3" r="1.7"/>'),
+     "Secure Transport", "Careful loading, transit and unloading"),
+    (_ri('<path d="M3.5 8.5l3-4.5h11l3 4.5"/><path d="M3.5 8.5v9.5a1 1 0 0 0 1 1h15a1 1 0 0 0 1-1V8.5"/><path d="M3.5 8.5h17M12 4v4.5"/>'),
+     "Unpack &amp; Place", "Unpacked, positioned and packaging removed"),
 ]
 
 def build_service(s):
@@ -514,6 +532,11 @@ def build_service(s):
         if s["slug"] == "international-removals" and "Destination Delivery" in _h2:   # destination-journey timeline
             parts.append(E.methodology_timeline(INTL_STEPS,
                 "Wolves Removals Destination Handover", "Door-to-Door Worldwide Moves",
+                _inner, bg=nb(), reverse=True))
+            continue
+        if s["slug"] == "white-glove-service" and "Concierge Process" in _h2:   # white-glove concierge timeline
+            parts.append(E.methodology_timeline(WHITEGLOVE_STEPS,
+                "Wolves Removals White-Glove Service", "Concierge-Level Care, Sussex",
                 _inner, bg=nb(), reverse=True))
             continue
         _sp = next((v for k, v in _sections.items() if k in _h2), None)   # heading-substring pin
