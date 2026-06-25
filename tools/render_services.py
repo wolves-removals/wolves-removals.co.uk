@@ -354,6 +354,10 @@ PAGE_IMG_PINS = {
     "storage": {
         "intro": ("wolves-van-outside-storage-warehouse-doorway",
                   "A Wolves Removals van outside the secure storage warehouse doorway"),
+        "sections": {
+            "Why Container Storage Is Cleaner": ("storage-pod-size-guide",
+                "A Wolves Removals storage pod size guide showing how much each container holds", True),
+        },
     },
     "antiques-in-west-sussex": {
         **_ANTIQUES_HIP,
@@ -483,6 +487,21 @@ WHITEGLOVE_STEPS = [
      "Unpack &amp; Place", "Unpacked, positioned and packaging removed"),
 ]
 
+# The business-storage "Security, Access & Inventory Management" section shown as the same
+# vertical timeline (replaces the flat fleet banner), worded to that section's five points.
+STORAGE_STEPS = [
+    (_ri('<path d="M3 7.5l9-4.5 9 4.5v9l-9 4.5-9-4.5v-9z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/>'),
+     "Dedicated Containment", "Goods sealed in their own private unit"),
+    (_ri('<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9.5 4a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v1h-5V4z"/><path d="M8.7 12.3l1.8 1.8 3.8-3.8"/>'),
+     "Inventory On Intake", "Every item logged for an auditable record"),
+    (_ri('<path d="M12 3l7 2.4v5.4c0 4.4-3 7.3-7 8.4-4-1.1-7-4-7-8.4V5.4L12 3z"/><path d="M9 12l2 2 4-4"/>'),
+     "Alarmed &amp; Monitored", "Secure, alarmed, weatherproof premises"),
+    (_ri('<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/><path d="M9 14.5l2 2 3.5-3.5"/>'),
+     "Appointment Access", "Your unit prepared for booked visits"),
+    (_ri('<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/>'),
+     "Retrieval &amp; Rotation", "We load, retrieve and rotate stock for you"),
+]
+
 def build_service(s):
     faqs = s["faqs"]
     _i = {"n": 0}
@@ -596,6 +615,11 @@ def build_service(s):
         if s["slug"] == "white-glove-service" and "Concierge Process" in _h2:   # white-glove concierge timeline
             parts.append(E.methodology_timeline(WHITEGLOVE_STEPS,
                 "Wolves Removals White-Glove Service", "Concierge-Level Care, Sussex",
+                _inner, bg=nb(), reverse=True))
+            continue
+        if s["slug"] == "storage/business-and-commercial-storage" and "Security, Access" in _h2:   # storage security timeline
+            parts.append(E.methodology_timeline(STORAGE_STEPS,
+                "Wolves Removals Storage Security Methodology", "Sussex Business &amp; Commercial Storage",
                 _inner, bg=nb(), reverse=True))
             continue
         _sp = next((v for k, v in _sections.items() if k in _h2), None)   # heading-substring pin
