@@ -248,7 +248,11 @@ def town_faqs(town, county):
 
 def build_town(slug, town, county):
     pics = E.page_photos(slug, 5)
-    styler = E.make_prose_styler(slug, E.page_photos(slug, 12))
+    # Unique-per-page body images: a distinct ordered pool consumed in sequence by the
+    # about/prep media rows (no longer match_photo, which gave identical picks on every
+    # town). Reserve the hero/local/strip pics so the body never repeats them.
+    body_pool = E.page_photos(slug + "-body", 22)
+    styler = E.make_prose_styler(slug, body_pool, sequential=True, used={p[0] for p in pics})
     faqs = town_faqs(town, county)
     faq_html, faq_schema = faq_block(faqs, heading=f"{town} Removals &mdash; Your Questions Answered", bg="bg-white")
     body = "\n".join([
@@ -337,7 +341,8 @@ def build_hub(slug, name, counties):
         'flats and rural lanes alike. That local knowledge means each move is planned around real conditions, so your day '
         'runs on time and without surprises.</p>')
     pics = E.page_photos(slug, 5)
-    styler = E.make_prose_styler(slug, E.page_photos(slug, 12))
+    body_pool = E.page_photos(slug + "-body", 22)
+    styler = E.make_prose_styler(slug, body_pool, sequential=True, used={p[0] for p in pics})
     faqs = town_faqs(name, name)
     faq_html, faq_schema = faq_block(faqs, heading=f"{name} Removals &mdash; Your Questions Answered", bg="bg-lightgrey")
     body = "\n".join([
@@ -402,7 +407,8 @@ def build_index():
         'line up, plus full and fragile <a href="/services/full-packing-service/">packing services</a> to take the '
         'pressure off moving day.</p>')
     pics = E.page_photos("locations-index", 5)
-    styler = E.make_prose_styler("locations-index", E.page_photos("locations-index", 12))
+    body_pool = E.page_photos("locations-index-body", 22)
+    styler = E.make_prose_styler("locations-index", body_pool, sequential=True, used={p[0] for p in pics})
     faqs = town_faqs("the South East", "the South East")
     faq_html, faq_schema = faq_block(faqs, heading="Areas We Cover &mdash; Your Questions Answered", bg="bg-lightgrey")
     # Ordered for a natural flow: title → CTA → context → the core area list (what visitors

@@ -368,7 +368,7 @@ def _split_row(inner_html, photo, reverse=False, bg="bg-white", contain=False, o
     return section(f'<div class="grid grid-cols-12 gap-6 lg:gap-10 {_align}">{text_d}{pic_d}</div>',
                    bg=bg, pad="pt-6 lg:pt-10 pb-6 lg:pb-10", extra="logo-row overflow-hidden")
 
-def media_rows(inner_html, seed, bg="bg-white", used=None, group=2, force=None, force_contain=False, force_pos=None, pins=None, min_h=None, vary=True):
+def media_rows(inner_html, seed, bg="bg-white", used=None, group=2, force=None, force_contain=False, force_pos=None, pins=None, min_h=None, vary=True, seq=None):
     """Site rule: a 2+ paragraph block is broken into tight text+image rows (`group`
     paragraphs each); each image is TOPIC-MATCHED to its paragraph (match_photo), crops
     to the text height (no whitespace), and sides alternate. Pass a shared `used` set to
@@ -406,6 +406,11 @@ def media_rows(inner_html, seed, bg="bg-white", used=None, group=2, force=None, 
             photo = force
         elif pins and gi in pins:                      # pinned image for a specific row: (file, alt[, obj_pos])
             photo = pins[gi]
+        elif seq is not None:                          # ordered per-page pool: next unused (unique per page)
+            photo = next((p for p in seq if p[0] not in used), None)
+            if photo is None:
+                photo = next((p for p in page_photos(f"{seed}-{gi}", 24) if p[0] not in used),
+                             page_photos(seed, 1)[0])
         else:
             photo = match_photo(body, used, seed=(f"{seed}-{gi}" if vary else None))   # page-seeded (bespoke per page)
             if photo is None:
@@ -1183,7 +1188,7 @@ def hero_review_row(bullets_html="", quote_button=True):
         return f'{bullets}<div class="mt-6 inline-flex flex-col items-stretch gap-3 max-w-full">{row}{btn}</div>'
     return f'{bullets}<div class="mt-6 flex flex-wrap items-center gap-4">{rc}{badge}</div>'
 
-def make_prose_styler(seed, photos=None, span="lg:col-span-10 lg:col-start-2"):
+def make_prose_styler(seed, photos=None, span="lg:col-span-10 lg:col-start-2", sequential=False, used=None):
     """Returns styled(inner_html, bg) applying the storage blueprint to prose sections:
       - cream rows -> rotating cards (variants 1/2/3); every other card carries a
         topical photo, alternating left/right;
@@ -1193,19 +1198,26 @@ def make_prose_styler(seed, photos=None, span="lg:col-span-10 lg:col-start-2"):
     off-topic pages (e.g. blog) where a removals photo wouldn't match the subject."""
     pool = photos if photos is not None else page_photos(seed, 12)
     st = {"card": 0, "side": 0, "mr": 0}
-    used = {pool[0][0]} if pool else set()
+    if used is None:
+        used = {pool[0][0]} if pool else set()
+    _seq = pool if sequential else None   # sequential: pull images in order (unique per page)
     def styled(inner, bg):
-        if pool and inner.count("<p") >= 2:   # site rule: 2+ paragraphs -> topic-matched split media rows
+        if pool and inner.count("<p") >= 2:   # site rule: 2+ paragraphs -> split media rows
             st["mr"] += 1
-            return media_rows(inner, f"{seed}-mr{st['mr']}", bg, used=used, group=2)
+            return media_rows(inner, f"{seed}-mr{st['mr']}", bg, used=used, group=2, seq=_seq)
         if not pool:   # deliberately image-less pages (calculators / off-topic): keep text-only
             if bg == "bg-beige":
                 i = st["card"]; st["card"] += 1
                 return content_card(inner, variant=(i % 3) + 1, bg=bg)
             return section(prose(inner, span=span), bg=bg, extra="logo-row overflow-hidden")
-        # every content row carries a real, topic-matched image beside the text
+        # every content row carries an image beside the text
         side = "left" if st["side"] % 2 == 1 else "right"; st["side"] += 1
-        photo = _row_photo(seed, inner, used, st["side"])
+        if sequential:
+            photo = next((p for p in pool if p[0] not in used), None)
+            if photo: used.add(photo[0])
+            else: photo = _row_photo(seed, inner, used, st["side"])
+        else:
+            photo = _row_photo(seed, inner, used, st["side"])
         if bg == "bg-beige":
             i = st["card"]; st["card"] += 1
             return content_card(inner, variant=(i % 3) + 1, bg=bg, photo=photo, img_side=side)
