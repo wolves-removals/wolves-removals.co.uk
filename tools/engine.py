@@ -604,7 +604,7 @@ def photo_gallery(photos, heading=None, intro=None, bg="bg-white"):
     return section(head + carousel, bg=bg)
 
 # ---- site-wide quote band (photo background + inline enquiry form) ----
-FORM_ENDPOINT = "/api/quote"   # TODO: Cloudflare Worker -> Resend (needs key + verified sender)
+FORM_ENDPOINT = "/api/contact"   # Cloudflare Pages Function -> Resend (functions/api/contact.js); branded dual emails
 QUOTE_BAND_PHOTO = "wolves-team-sussex-house-move"
 
 def _qfield(name, placeholder, typ="text", required=False, half=True):
