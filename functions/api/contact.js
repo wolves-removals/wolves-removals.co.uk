@@ -47,18 +47,29 @@ function esc(s) {
 }
 function validEmail(e) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(e || "")); }
 
-function fromAddr(env) { return env.CONTACT_FROM || env.QUOTE_FROM; }
-function toAddr(env) { return env.CONTACT_TO || env.QUOTE_TO; }
+// Trim env values — pasted secrets often pick up a trailing newline/space, which
+// makes the Authorization header invalid and causes fetch() to throw a raw 502.
+function clean(v) { return (v == null ? "" : String(v)).trim(); }
+function apiKey(env) { return clean(env.RESEND_API_KEY); }
+function fromAddr(env) { return clean(env.CONTACT_FROM) || clean(env.QUOTE_FROM); }
+function toAddr(env) { return clean(env.CONTACT_TO) || clean(env.QUOTE_TO); }
 
 async function sendEmail(env, to, subject, html, replyTo) {
   var body = { from: fromAddr(env), to: [to], subject: subject, html: html };
   if (replyTo) body.reply_to = replyTo;
-  var res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { "authorization": "Bearer " + env.RESEND_API_KEY, "content-type": "application/json" },
-    body: JSON.stringify(body)
-  });
-  return res.ok;
+  try {
+    var res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { "authorization": "Bearer " + apiKey(env), "content-type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    if (res.ok) return { ok: true };
+    var detail = "";
+    try { detail = await res.text(); } catch (e) {}
+    return { ok: false, status: res.status, detail: detail.slice(0, 300) };
+  } catch (e) {
+    return { ok: false, status: 0, detail: "fetch threw: " + (e && e.message ? e.message : String(e)) };
+  }
 }
 
 // Branded HTML shell — white card, logo header, orange divider, contact footer.
@@ -109,6 +120,7 @@ function table(rows) {
 
 export async function onRequestPost(context) {
   var env = context.env || {};
+  try {
 
   // Read JSON or classic form encoding.
   var a;
@@ -133,9 +145,11 @@ export async function onRequestPost(context) {
   if (!first) return json({ ok: false, error: "Please add your name." }, 400);
   if (!validEmail(a.email)) return json({ ok: false, error: "Please add a valid email address." }, 400);
 
-  if (!env.RESEND_API_KEY || !fromAddr(env) || !toAddr(env)) {
+  if (!apiKey(env) || !fromAddr(env) || !toAddr(env)) {
     return json({ ok: false, error: "Online enquiries aren't switched on yet — please call us on " + BRAND.phone + " and we'll be glad to help." }, 503);
   }
+  var debug = false;
+  try { debug = new URL(context.request.url).searchParams.get("debug") === "1"; } catch (e) {}
 
   var name = (esc(first) + " " + esc(a.last_name || "")).trim();
   var enquiry = Array.isArray(a.enquiry) ? a.enquiry.join(", ") : (a.enquiry || "");
@@ -162,7 +176,11 @@ export async function onRequestPost(context) {
 
   var subjectBits = enquiry ? (" — " + enquiry) : "";
   var sentTeam = await sendEmail(env, toAddr(env), "New enquiry — " + name + subjectBits, teamHtml, a.email);
-  if (!sentTeam) return json({ ok: false, error: "Sorry, we couldn't send your enquiry just now — please call us on " + BRAND.phone + "." }, 502);
+  if (!sentTeam.ok) {
+    var err = { ok: false, error: "Sorry, we couldn't send your enquiry just now — please call us on " + BRAND.phone + "." };
+    if (debug) { err.resendStatus = sentTeam.status; err.resendDetail = sentTeam.detail; err.from = fromAddr(env); err.to = toAddr(env); }
+    return json(err, 502);
+  }
 
   // ---- Customer confirmation ----
   var custInner =
@@ -176,4 +194,8 @@ export async function onRequestPost(context) {
   try { await sendEmail(env, a.email, "We've received your enquiry — Wolves Removals", custHtml); } catch (e2) {}
 
   return json({ ok: true });
+
+  } catch (err) {
+    return json({ ok: false, error: "Sorry, we couldn't send your enquiry just now — please call us on " + BRAND.phone + ".", crash: String((err && err.message) || err) }, 500);
+  }
 }
