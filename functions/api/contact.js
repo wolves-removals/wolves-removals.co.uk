@@ -148,8 +148,6 @@ export async function onRequestPost(context) {
   if (!apiKey(env) || !fromAddr(env) || !toAddr(env)) {
     return json({ ok: false, error: "Online enquiries aren't switched on yet — please call us on " + BRAND.phone + " and we'll be glad to help." }, 503);
   }
-  var debug = false;
-  try { debug = new URL(context.request.url).searchParams.get("debug") === "1"; } catch (e) {}
 
   var name = (esc(first) + " " + esc(a.last_name || "")).trim();
   var enquiry = Array.isArray(a.enquiry) ? a.enquiry.join(", ") : (a.enquiry || "");
@@ -177,9 +175,8 @@ export async function onRequestPost(context) {
   var subjectBits = enquiry ? (" — " + enquiry) : "";
   var sentTeam = await sendEmail(env, toAddr(env), "New enquiry — " + name + subjectBits, teamHtml, a.email);
   if (!sentTeam.ok) {
-    var err = { ok: false, error: "Sorry, we couldn't send your enquiry just now — please call us on " + BRAND.phone + "." };
-    if (debug) { err.resendStatus = sentTeam.status; err.resendDetail = sentTeam.detail; err.from = fromAddr(env); err.to = toAddr(env); }
-    return json(err, 502);
+    try { console.error("contact: Resend send failed", sentTeam.status, sentTeam.detail); } catch (e) {}
+    return json({ ok: false, error: "Sorry, we couldn't send your enquiry just now — please call us on " + BRAND.phone + "." }, 502);
   }
 
   // ---- Customer confirmation ----
