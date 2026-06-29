@@ -10,7 +10,7 @@ import engine as E
 from engine import esc, icon, img, section, prose, card_grid, cta_band, faq_block
 
 HERO = "images/photos/professional-wolves-removals-team-sussex.webp"
-FORM_ENDPOINT = "/api/contact"   # TODO: Cloudflare Worker -> Resend (needs key + verified sender)
+FORM_ENDPOINT = "/api/contact"   # Cloudflare Pages Function -> Resend (functions/api/contact.js); needs RESEND_API_KEY, CONTACT_FROM, CONTACT_TO
 
 def page_hero(h1, lead_html, img_src=None, bullets=None):
     inc = ""

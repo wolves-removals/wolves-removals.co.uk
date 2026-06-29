@@ -1903,6 +1903,8 @@ def render_page(*, title, description, canonical_path, body, og_image=None,
         f'<script defer src="/js/alpine.min.js?v={ASSET_VER}"></script>',
         # Photo-strip carousel (arrows + centre-emphasis); no-ops on pages without [data-carousel].
         f'<script defer src="/js/photo-carousel.js?v={ASSET_VER}"></script>',
+        # Enquiry form → /api/contact (branded dual Resend emails); no-ops on pages without .enquiry-form.
+        f'<script defer src="/js/enquiry-form.js?v={ASSET_VER}"></script>',
         "</body></html>",
     ]
     return "\n".join(doc)
