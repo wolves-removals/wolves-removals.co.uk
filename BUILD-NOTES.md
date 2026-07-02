@@ -21,6 +21,29 @@ Replaces the WordPress (Elementor + ACF) site with a fast, secure, free-to-host 
 - **Hosting:** Cloudflare Pages (`_headers`, `_redirects`, `CNAME`). Forms via
   Cloudflare Worker → Resend (needs domain Resend API key + verified sender — TODO).
 
+## Deploy (push = auto-deploy)
+
+Cloudflare Pages is connected to this GitHub repo via **Git integration** (configured in
+the Cloudflare dashboard → *Pages → wolves-removals → Settings → Builds & deployments*).
+Every push to the **`main`** branch automatically triggers a production deploy — usually
+live within 1–3 minutes. No `wrangler` command, drag-drop, or CI workflow is involved.
+
+The repo commits **pre-built output** (generated HTML + `css/site.min.css`), and Cloudflare
+serves those committed files. So a deploy is only as fresh as what you commit. The workflow:
+
+1. Make source changes (edit `tools/*.py` generators, data files, or CSS input).
+2. **Build before pushing:** `npm run build` (= `npm run build:css && python3 tools/build.py`).
+   Run `build:css` only when CSS changed; `build.py` regenerates all HTML + sitemap + llms.txt.
+3. `git add -A && git commit && git push origin main` → Pages auto-builds and deploys.
+
+Notes:
+- Pushes to **other branches** create isolated **preview** deployments (`*.pages.dev`), not
+  production — safe for testing.
+- HTML is served `cf-cache-status: DYNAMIC` (not edge-cached), so page changes appear
+  immediately; CSS/JS/images use `?v=` cache-busters, so those refresh cleanly too.
+- Watch a deploy: Cloudflare dashboard → **Pages → wolves-removals → Deployments** (each
+  push shows as a build with its commit hash + status).
+
 ## Brand tokens (from theme `tailwind.config.js`)
 
 | Token | Hex | Use |
