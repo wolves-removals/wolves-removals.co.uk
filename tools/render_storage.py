@@ -322,7 +322,7 @@ def calc_widget_moving():
         f'<div class="scalc-opt-grid scalc-opt-grid--6">{prop_cards}</div>')
     cuft_sub = (
         '<div class="scalc-sub"><div class="scalc-sub-lab">Adjust cubic ft</div>'
-        '<input id="scalc-cuft-input" type="number" min="0" inputmode="numeric" class="scalc-cuft-input" value="0">'
+        '<input id="scalc-cuft-input" type="number" min="0" inputmode="numeric" aria-label="Adjust cubic ft" class="scalc-cuft-input" value="0">'
         '<p class="scalc-hint" id="scalc-cuft-hint">Set by your home size or the inventory above &mdash; this is the volume your estimate uses, and you can edit it here.</p>'
         '</div>')
     dist_sub = (
@@ -359,7 +359,7 @@ def calc_widget_moving():
                    "Pick a rough term or type the exact days &mdash; storage runs from &pound;2.50 down to &pound;2.071 per pod per day as you add pods."),
         f'<div class="scalc-dur-grid">{dur_btns}</div>'
         '<div class="scalc-sub"><div class="scalc-sub-lab">Days of storage</div>'
-        '<input id="scalc-days" type="number" min="0" inputmode="numeric" class="scalc-cuft-input" value="28">'
+        '<input id="scalc-days" type="number" min="0" inputmode="numeric" aria-label="Days of storage" class="scalc-cuft-input" value="28">'
         '<p class="scalc-hint">7 days = 1 week &middot; 30 = a month &middot; 365 = a year. Each pod holds ~250 cu ft (7 cu m).</p></div>',
         show="storage both")
     inv_panel = _block(
