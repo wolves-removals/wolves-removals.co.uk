@@ -1835,7 +1835,7 @@ def blog_feed(n=10):
         '</div>')
     body = (f'<script type="application/json" id="blog-feed-data">{posts_json}</script>'
             '<div class="social-feed" x-data="{open:false,active:0,posts:JSON.parse(document.getElementById(\'blog-feed-data\').textContent)}">'
-            f'<div class="social-wrap">{arrows}<div class="social-track" x-ref="track" role="list">{"".join(cards)}</div></div>'
+            f'<div class="social-wrap">{arrows}<div class="social-track" x-ref="track" role="group" aria-label="Latest blog posts">{"".join(cards)}</div></div>'
             f'{modal}</div>')
     _BLOG_FEED_CACHE = section(head + body, bg="bg-lightgrey")
     return _BLOG_FEED_CACHE

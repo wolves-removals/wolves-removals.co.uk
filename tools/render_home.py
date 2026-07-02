@@ -103,7 +103,7 @@ def social_feed():
             f'<a href="{E.S.SOCIAL["facebook"]}" target="_blank" rel="noopener">Like our page</a> to keep up to date.</p></div>')
     body = (f'<script type="application/json" id="social-fallback">{fb_json}</script>'
             '<div class="social-feed" x-data="socialFeed()">'
-            f'<div class="social-wrap">{arrows}<div class="social-track" x-ref="track" role="list">{card}</div></div>'
+            f'<div class="social-wrap">{arrows}<div class="social-track" x-ref="track" role="group" aria-label="Latest Facebook posts">{card}</div></div>'
             f'{lightbox}</div>')
     return section(head + body, bg="bg-lightgrey")
 
