@@ -5,6 +5,10 @@ _source/
 # LOCAL ONLY: must NEVER be committed or pushed to GitHub (user rule 2026-07-01).
 _private/
 
+# SEO audit findings / remediation notes. LOCAL ONLY — never deploy: some notes name
+# on-page integrity risks + strategy that must not be publicly served at /seo/ (added 2026-07-02).
+seo/
+
 # Secrets — NEVER commit. Production keys live in the Cloudflare Pages dashboard;
 # .dev.vars is for local `wrangler pages dev` only.
 .dev.vars
