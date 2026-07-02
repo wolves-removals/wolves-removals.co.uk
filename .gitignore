@@ -1,6 +1,10 @@
 # Reference material — original WP theme + captured live HTML (not deployed)
 _source/
 
+# Private, competitor-sensitive SEO knowledge — internal rule book & notes.
+# LOCAL ONLY: must NEVER be committed or pushed to GitHub (user rule 2026-07-01).
+_private/
+
 # Secrets — NEVER commit. Production keys live in the Cloudflare Pages dashboard;
 # .dev.vars is for local `wrangler pages dev` only.
 .dev.vars

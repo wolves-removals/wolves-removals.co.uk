@@ -1344,7 +1344,7 @@ def step_process(bg="bg-beige", topic="Removal", heading=None, intro=None):
         '<div class="flex md:grid md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 auto-rows-fr '
         'overflow-x-auto md:overflow-visible snap-x snap-mandatory proc-scroll -mx-4 px-4 md:mx-0 md:px-0 pb-2 md:pb-0">'
         f'{cells}</div>'
-        f'<div class="proc-dots md:hidden" role="tablist" aria-label="Step navigation">{dots}</div>'
+        f'<div class="proc-dots md:hidden" role="group" aria-label="Step navigation">{dots}</div>'
         '</div>'
         f'<script defer src="/js/process-carousel.js?v={ASSET_VER}"></script>',
         bg=bg)

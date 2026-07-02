@@ -175,7 +175,7 @@ def build():
     left = (
         '<div class="-mx-4 px-4 lg:mx-0 lg:px-0 mb-6 lg:mb-8 sticky top-[100px] sm:top-[108px] lg:static z-30 bg-[#6a7682] lg:bg-transparent py-2">'
         + search_input
-        + f'<div class="bs-pills flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Filter products">{pill_html}</div></div>'
+        + f'<div class="bs-pills flex gap-2 overflow-x-auto pb-1" role="group" aria-label="Filter products">{pill_html}</div></div>'
         f'<div class="grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-5">{cards_html}</div>'
         '<p data-bs-noresults class="hidden text-center text-darkgrey py-10">No products match &mdash; '
         '<button type="button" data-bs-clear class="text-[#262626] underline">clear filters</button>.</p>')
