@@ -1823,7 +1823,7 @@ def blog_feed(n=10):
         '<button type="button" class="social-nav social-nav-prev" aria-label="Previous article" @click="active=(active-1+posts.length)%posts.length">'
         '<svg viewBox="0 0 24 24" class="w-7 h-7" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg></button>'
         '<div class="social-modal" @click.stop>'
-        '<div class="social-modal-img"><img :src="posts[active].img" :alt="posts[active].alt" width="1200" height="900"></div>'
+        '<div class="social-modal-img"><img alt="Wolves Removals blog post" :src="posts[active].img" :alt="posts[active].alt" width="1200" height="900"></div>'
         '<div class="social-modal-cap">'
         '<div class="social-modal-head"><span x-text="posts[active].cat"></span><span x-text="posts[active].date"></span></div>'
         '<p class="social-modal-text" x-text="posts[active].title"></p>'
